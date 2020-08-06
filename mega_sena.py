@@ -7,17 +7,17 @@ from requests.exceptions import HTTPError
 
 
 class MegaSenaDownload:
-    def __init__(self, main_word):
+    def __init__(self, source_file):
         self.url = (
             'http://www1.caixa.gov.br/loterias/_arquivos/loterias/D_megase.zip'
         )
         self.response = get(self.url, stream=True)
         self.date = dt.now().strftime('%Y-%m-%d')
-        self.main_word = main_word
+        self.source_file = source_file
 
     def get_file(self):
         try:
-            with open(f'{self.main_word}', "wb") as file_zip:
+            with open(f'{self.source_file}', "wb") as file_zip:
                 for data in self.response.iter_content():
                     file_zip.write(data)
 
@@ -25,15 +25,15 @@ class MegaSenaDownload:
             raise SystemExit(f'Error: {e}')
 
     def extract_file(self):
-        with ZipFile(f'{self.main_word}', 'r') as extract_file:
+        with ZipFile(f'{self.source_file}', 'r') as extract_file:
             extract_file.extractall(f'Mega-Sena/RawData/{self.date}')
 
-        if path.exists(f'{self.main_word}'):
-            remove(f'{self.main_word}')
+        if path.exists(f'{self.source_file}'):
+            remove(f'{self.source_file}')
 
 
 if __name__ == '__main__':    
-    main_word = 'mega-sena.zip'
-    get_file = MegaSenaDownload(main_word=main_word)
+    source_file = 'mega-sena.zip'
+    get_file = MegaSenaDownload(source_file=source_file)
     get_file.get_file()
     get_file.extract_file()

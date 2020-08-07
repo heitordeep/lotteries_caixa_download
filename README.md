@@ -21,9 +21,13 @@ For Linux:
 <br>
 
 For Windows:
-1) Installation requirements:
+1) Create venv and Installation requirements:
    ```shell
-    $ install_package.bat
+    $ create_venv.bat
+   ```
+   and
+   ```shell
+    $ pip install -r requirements_dev.txt
    ```
 
 2) Run the command:

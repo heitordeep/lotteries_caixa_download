@@ -28,4 +28,5 @@ requirements: ## Install project packages
 	@pip install -r requirements_dev.txt 
 
 run: clean ## Run script
-	python mega_sena.py
+	python main.py
+

@@ -18,6 +18,8 @@ For Linux:
     ```shell
      $ make run
     ```
+    
+    <img src='https://user-images.githubusercontent.com/17969551/90265885-98fd8b80-de29-11ea-998f-ad461d7c7f90.png' width='750'>
 <br>
 
 For Windows:
@@ -37,14 +39,19 @@ For Windows:
 <br>
   
 The data will be stored in the file.<br>
-For Example: 
-**Mega-Sena/RawData/2020-08-06/files**
+For Example: <br>
+**raw/megasena/2020-08-14/files** - (Raw Data) html<br>
+**swamp/megasena/2020-08-14/files** - (Raw Data) csv<br>
+**lake/megasena/2020-08-14/files**
 <br>
 
-Result mega sena **d_mega.htm**
+Result directories:<br>
 
-<img src='https://user-images.githubusercontent.com/17969551/89588715-97750780-d81a-11ea-9a9f-a057efd7319f.png' width='500'>
+<img src='https://user-images.githubusercontent.com/17969551/90266677-b97a1580-de2a-11ea-8930-131a304ab4d6.png' width='400'>
 <br>
+
+Example the path file:<br>
+<img src='https://user-images.githubusercontent.com/17969551/90266840-04942880-de2b-11ea-9007-a127c0b241fc.png' width='500'>
 
 # Do you need help with commands?
 

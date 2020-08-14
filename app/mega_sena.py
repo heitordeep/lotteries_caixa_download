@@ -1,9 +1,11 @@
 from datetime import datetime as dt
 from os import path, remove
+from time import sleep
 from zipfile import ZipFile
 
 from requests import get
 from requests.exceptions import HTTPError
+from rich.console import Console
 
 
 class MegaSenaDownload:
@@ -12,13 +14,14 @@ class MegaSenaDownload:
         self.response = get(self.url, stream=True)
         self.date = dt.now().strftime('%Y-%m-%d')
         self.source_file = source_file
+        self.console = Console()
 
     def verification_http(self):
 
         try:
             self.response.raise_for_status()
         except HTTPError as e:
-            raise SystemExit(e)
+            raise SystemExit(f'Error: {e}')
         except Exception as e:
             raise SystemExit(f'Error: {e}')
         else:
@@ -26,10 +29,14 @@ class MegaSenaDownload:
 
     def write_file(self):
         try:
+
             with open(f'{self.source_file}', "wb") as file_zip:
                 for data in self.response.iter_content():
                     file_zip.write(data)
-
+                self.console.log(
+                    f'Arquivo [bold cyan]{self.source_file}[/bold cyan] baixado com sucesso!'
+                )
+            sleep(1)
             self.extract_file()
 
         except Exception as e:
@@ -38,18 +45,15 @@ class MegaSenaDownload:
     def extract_file(self):
         try:
 
-            with ZipFile(f'{self.source_file}', 'r') as extract_file:
-                extract_file.extractall(f'Mega-Sena/RawData/{self.date}')
-
             if path.exists(f'{self.source_file}'):
+
+                with ZipFile(f'{self.source_file}', 'r') as extract_file:
+                    extract_file.extractall(f'raw/megasena/{self.date}')
+                self.console.log(
+                    f'Arquivo [bold cyan]{self.source_file}[/bold cyan] extraido com sucesso! '
+                    f'Verifique na pasta raw/megasena/{self.date}'
+                )
                 remove(f'{self.source_file}')
 
         except Exception as e:
             raise SystemExit(f'Error: {e}')
-
-
-if __name__ == '__main__':
-    source_file = 'mega-sena.zip'
-    url = 'http://www1.caixa.gov.br/loterias/_arquivos/loterias/D_megase.zip'
-    get_file = MegaSenaDownload(source_file=source_file, url=url)
-    get_file.verification_http()

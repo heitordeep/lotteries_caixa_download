@@ -34,7 +34,7 @@ For Windows:
 
 2) Run the command:
     ```shell
-     $ python mega_sena.py
+     $ python main.py
     ```
 <br>
   

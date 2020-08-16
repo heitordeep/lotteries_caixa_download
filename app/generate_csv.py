@@ -108,18 +108,16 @@ class GeneratorCsv:
                 source_file='tratado.csv',
             )
 
-    def create_csv(self, **kwargs):
+    def create_csv(self, data, path_file, source_file):
 
-        data_csv = pd.DataFrame(kwargs['data'])
+        data_csv = pd.DataFrame(data)
 
-        makedirs(kwargs["path_file"], exist_ok=True)
-        data_csv.to_csv(
-            f'{kwargs["path_file"]}/{kwargs["source_file"]}', index=False
-        )
+        makedirs(path_file, exist_ok=True)
+        data_csv.to_csv(f'{path_file}/{source_file}', index=False)
         sleep(1)
         self.console.log(
-            f'Arquivo [bold cyan]{kwargs["source_file"]}[/bold cyan] criado com sucesso! '
-            f'Verifique na pasta: {kwargs["path_file"]} '
+            f'Arquivo [bold cyan]{source_file}[/bold cyan] criado com sucesso! '
+            f'Verifique na pasta: {path_file} '
         )
 
     def main(self):

@@ -46,6 +46,7 @@ class MegaSenaDownload:
                     f'\nAguarde [bold yellow]60[/bold yellow] segundos para tentar novamente.'
                 )
                 sleep(60)
+                count -= 1
                 self.verification_http()
 
             raise SystemExit(f'Error: {e}')

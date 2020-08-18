@@ -15,6 +15,7 @@ class MegaSenaDownload:
         self.response = get(url, stream=True)
         self.date = dt.now().strftime('%Y-%m-%d')
         self.source_file = source_file
+        self.count = 2
 
     def verification_http(self):
 
@@ -39,17 +40,16 @@ class MegaSenaDownload:
             remove(f'{self.source_file}')
 
         except HTTPError as e:
-            count = 3
-            if count != 0:
+            if self.count != 0:
                 console.log(
                     f'{e}'
                     f'\nAguarde [bold yellow]60[/bold yellow] segundos para tentar novamente.'
                 )
-                sleep(60)
-                count -= 1
+                sleep(0.3)
+                self.count -= 1
                 self.verification_http()
-
-            raise SystemExit(f'Error: {e}')
+            else:    
+                raise SystemExit(f'Error: {e}')
 
         except Exception as e:
             raise SystemExit(f'Error: {e}')

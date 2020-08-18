@@ -45,7 +45,7 @@ class MegaSenaDownload:
                     f'{e}'
                     f'\nAguarde [bold yellow]60[/bold yellow] segundos para tentar novamente.'
                 )
-                sleep(0.3)
+                sleep(60)
                 self.count -= 1
                 self.verification_http()
             else:    

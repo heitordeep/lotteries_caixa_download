@@ -28,5 +28,5 @@ requirements: ## Install project packages
 	@pip install -r requirements_dev.txt 
 
 run: clean ## Run script
-	python main.py
+	python main.py $(search)
 

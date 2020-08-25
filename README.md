@@ -1,41 +1,40 @@
-# MegaSenaDownload
-
+# Lotteries Caixa Download :moneybag:<br>
+<img src='https://camo.githubusercontent.com/826560c5526525754718e6877d244af221d92634/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c6963656e73652d4d49542d696e666f726d6174696f6e616c'>
 Extracted data with Python.
 
-# Start:
+# :pushpin: Requirements:
 
-I recommend using pyenv to run the application and use Python version 3.7, but the preference is yours :D
+Library: <img src='https://img.shields.io/badge/Requests-2.24.0-informational'> <img src='https://img.shields.io/badge/Pandas-1.1.0-informational'><br>
+Linguage: <img src='https://camo.githubusercontent.com/2857442965ab9a51229c075102012bdbd340abc3/68747470733a2f2f696d672e736869656c64732e696f2f707970692f707976657273696f6e732f72657175657374733f6c6162656c3d507974686f6e266c6f676f3d505954484f4e266c6f676f436f6c6f723d79656c6c6f77267374796c653d706c6173746963'>
 
-For Linux: 
-1) Installation requirements:
-   ```shell
+- For Linux: <br>
+   Installation requirements:<br>
+    ```shell
     $ make requirements 
-   ```
-   
-   <img src='https://user-images.githubusercontent.com/17969551/89588815-c7bca600-d81a-11ea-9833-59115cb77d7a.png' width='750'>
-
-2) Run the command:
-    ```shell
-     $ make run
     ```
-    
-    <img src='https://user-images.githubusercontent.com/17969551/90265885-98fd8b80-de29-11ea-998f-ad461d7c7f90.png' width='750'>
-<br>
 
-For Windows:
-1) Create venv and Installation requirements:
-   ```shell
-    $ create_venv.bat
-   ```
-   and
-   ```shell
-    $ pip install -r requirements_dev.txt
-   ```
+- For Windows: <br>
+   Create venv and Installation requirements:<br>
+     ```shell
+     $ create_venv.bat
+     ```
+    and
 
-2) Run the command:
-    ```shell
-     $ python main.py
+   ```shell
+  $ pip install -r requirements_dev.txt
     ```
+
+# :rocket: Run the command:
+- Parameters: megasena, quina or lotofacil. For example: <br>
+   - For Linux: <br>
+        ```shell
+        $ make run search=quina
+        ```
+
+   - For Windows:<br>
+        ```shell
+       $ python main.py quina
+        ```
 <br>
   
 The data will be stored in the file.<br>

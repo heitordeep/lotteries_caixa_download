@@ -36,6 +36,20 @@ Linguage: <img src='https://camo.githubusercontent.com/2857442965ab9a51229c07510
        $ python main.py quina
         ```
 <br>
+
+# :computer: Run Page Web:
+- Parameters: megasena, quina or lotofacil. For example: <br>
+   - For Linux: <br>
+        ```shell
+        $ make runserver
+        ```
+
+   - For Windows:<br>
+        ```shell
+       $ python run_web.py
+        ```
+- Access -> http://127.0.0.1:5000/web/
+<br>
   
 The data will be stored in the file.<br>
 For Example: <br>

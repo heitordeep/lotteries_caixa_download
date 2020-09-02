@@ -3,3 +3,4 @@ __pycache__
 Mega-Sena
 .pyc
 .cache
+.env

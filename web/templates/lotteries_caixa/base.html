@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://kit.fontawesome.com/e3e4fb1593.js"></script>
+    {% block script %}
+
+    {% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-light bg-warning">
+        <a class="navbar-brand" href="{{ url_for('web.index') }}">
+            <span class="text-muted">Lotteries Caixa Download <i class="fas fa-file-invoice-dollar"></i></span>
+        </a>
+    </nav>
+
+
+    <div class="container-fluid text-center" style="padding-top: 20px;">
+
+        {% block content %}
+
+        {% endblock %}
+
+    </div>
+
+    <footer id="sticky-footer" class="py-1 bg-dark text-white fixed-bottom" style="margin-top: 23.7%">
+        <div class="container text-center">
+            <small>&copy; Desenvolvido por Fernando Heitor - 2020</small>
+        </div>
+    </footer>
+
+</body>
+
+</html>

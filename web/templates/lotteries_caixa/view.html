@@ -1,0 +1,41 @@
+{% extends 'lotteries_caixa/base.html' %}
+
+{% block script %}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+{% endblock %}
+
+{% block title %}Lotteries Caixa Download - {{ title }}{% endblock %}
+{% block content %}
+<style>
+    .scrollit {
+        overflow-y: scroll;
+        height: 350px;
+    }
+</style>
+{{ pagination.info }}
+{{ pagination.links }}
+<div class="table-responsive scrollit">
+    <table class="table table-hover table-dark text-center ">
+        <thead>
+            <tr>
+                {% for header in headers %}
+                <th scope="col">{{ header }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for row in row_data %}
+            <tr>
+                {% for rows in row %}
+                <th scope="col">{{ rows }}</th>
+                {% endfor %}
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

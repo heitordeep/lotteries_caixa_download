@@ -30,3 +30,5 @@ requirements: ## Install project packages
 run: clean ## Run script
 	python main.py $(search)
 
+runserver: clean
+	python run_web.py

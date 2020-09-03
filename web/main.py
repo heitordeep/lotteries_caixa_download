@@ -65,9 +65,10 @@ def view(premium):
 def update_csv():
 
     list_premium = ['megase', 'quina', 'lotfac']
-    name = 'quina'
+    
 
     for name_file in list_premium:
+        name = 'quina'
         url = f'http://www1.caixa.gov.br/loterias/_arquivos/loterias/D_{name_file}.zip'
 
         if name_file == 'megase':

@@ -27,5 +27,5 @@ if __name__ == "__main__":
     url = f'http://www1.caixa.gov.br/loterias/_arquivos/loterias/D_{name_file}.zip'
     get_file = CaixaLotteriesDownload(source_file=argv[1], url=url)
     get_file.verification_http()
-    create_csv.convert_to_csv(f'd_{name_file}')
-    create_csv.sanitize_csv()
+    create_csv.convert_to_csv(argv[1], f'd_{name_file}')
+    create_csv.sanitize_csv(argv[1])

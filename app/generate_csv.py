@@ -12,18 +12,20 @@ class GeneratorCsv:
     def __init__(self):
         self.date = dt.now().strftime('%Y-%m-%d')
 
-    def convert_to_csv(self, name_file):
+    def convert_to_csv(self, name_directory, name_file):
         console.log(f'Buscando arquivo [bold cyan]{name_file}.htm[/bold cyan]')
 
         if name_file == 'd_megase':
             name_file = 'd_mega'
 
-        if path.exists(f'raw/{argv[1]}/{self.date}/{name_file}.htm'):
+        if path.exists(f'raw/{name_directory}/{self.date}/{name_file}.htm'):
 
             console.log(
                 f'Arquivo [bold cyan]{name_file}.htm[/bold cyan] encontrado :smiley:'
             )
-            df = pd.read_html(f'raw/{argv[1]}/{self.date}/{name_file}.htm')
+            df = pd.read_html(
+                f'raw/{name_directory}/{self.date}/{name_file}.htm'
+            )
 
             df = df[0]
 
@@ -38,13 +40,13 @@ class GeneratorCsv:
 
             self.create_csv(
                 data=data,
-                path_file=f'swamp/{argv[1]}/{self.date}',
+                path_file=f'swamp/{name_directory}/{self.date}',
                 source_file='nao_tratado.csv',
             )
 
-    def sanitize_csv(self):
+    def sanitize_csv(self, name_directory):
 
-        path_file = f'swamp/{argv[1]}/{self.date}/nao_tratado.csv'
+        path_file = f'swamp/{name_directory}/{self.date}/nao_tratado.csv'
 
         console.log(f'Buscando arquivo [bold cyan]nao_tratado.csv[/bold cyan]')
         if path.exists(path_file):
@@ -72,7 +74,7 @@ class GeneratorCsv:
 
             self.create_csv(
                 data=data,
-                path_file=f'lake/{argv[1]}/{self.date}',
+                path_file=f'lake/{name_directory}/{self.date}',
                 source_file='tratado.csv',
             )
 

@@ -4,48 +4,43 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 {% endblock %}
 
-{% block title %}Lotteries Caixa Download {% endblock %}
+{% block title %}Lotteries Caixa Download{% endblock %}
 {% block content %}
 
-{% if error %}
-<p class="alert alert-danger">{{ error }}</p>
+{% if message %}
+<p class="alert alert-{{color}}">{{ message }}</p>
 {% endif %}
+<style>
+table.table thead th {
+    padding:0;
+}
+</style>
 
 <div class="table-responsive scrollit">
-    <table class="table table-hover table-dark text-center ">
+    <table class="table table-hover table-dark">
         <thead>
             <tr>
-                <th>
-                    Mega-Sena
-                </th>
-                <th>
-                    Lotofácil
-                </th>
-                <th>
-                    Quina
-                </th>
+                <th>Mega-Sena</th>
+                <th>Lotofácil</th>
+                <th>Quina</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <th>
                     <a class="btn btn-success btn-sm" href="{{ url_for('web.view', premium='megasena') }}">Acessar</a>
-
-                    <button class="btn btn-info btn-sm">Atualizar Dados</button>
                 </th>
                 <th>
                     <a class="btn btn-success btn-sm" href="{{ url_for('web.view',premium='lotofacil') }}">Acessar</a>
-
-                    <button class="btn btn-info btn-sm">Atualizar Dados</button>
+                    
                 </th>
                 <th>
                     <a class="btn btn-success btn-sm" href="{{ url_for('web.view',premium='quina') }}">Acessar</a>
-
-                    <button class="btn btn-info btn-sm">Atualizar Dados</button>
                 </th>
             </tr>
         </tbody>
     </table>
 </div>
 <br>
+<a class="btn btn-info btn-lg btn-block" href="{{ url_for('web.update_csv') }}">Atualizar Dados</a>
 {% endblock %}

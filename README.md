@@ -2,6 +2,17 @@
 <img src='https://camo.githubusercontent.com/826560c5526525754718e6877d244af221d92634/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c6963656e73652d4d49542d696e666f726d6174696f6e616c'>
 Extracted data with Python.
 
+
+<br>
+
+# :warning: Pending to resolve and Resolved:
+
+- [X] Extract files
+- [X] Create Web Page
+- [X] Create API
+- [ ] API Pagination
+
+
 # :pushpin: Requirements:
 
 Library: <img src='https://img.shields.io/badge/Requests-2.24.0-informational'> <img src='https://img.shields.io/badge/Pandas-1.1.0-informational'><br>
@@ -21,7 +32,7 @@ Linguage: <img src='https://camo.githubusercontent.com/2857442965ab9a51229c07510
     and
 
    ```shell
-  $ pip install -r requirements_dev.txt
+  $ pip install -r requirements/requirements_dev.txt
     ```
 
 # :rocket: Run the command:
@@ -33,12 +44,14 @@ Linguage: <img src='https://camo.githubusercontent.com/2857442965ab9a51229c07510
 
    - For Windows:<br>
         ```shell
-       $ python main.py quina
+       $ python download.py.py quina
         ```
 <br>
 
-# :computer: Run Page Web:
-- Parameters: megasena, quina or lotofacil. For example: <br>
+# :computer: Run Web Page and API:
+- It is necessary to create an .env file with the following information: <br><br>
+   - ```.env```:  **DEBUG=True**
+
    - For Linux: <br>
         ```shell
         $ make runserver
@@ -46,9 +59,10 @@ Linguage: <img src='https://camo.githubusercontent.com/2857442965ab9a51229c07510
 
    - For Windows:<br>
         ```shell
-       $ python run_web.py
+       $ python run.py
         ```
-- Access -> http://127.0.0.1:5000/web/
+- Access -> Web Page: http://127.0.0.1:5000/web/ or API: http://127.0.0.1:5000/api/ 
+
 <br>
   
 The data will be stored in the file.<br>

@@ -28,19 +28,19 @@ table.table thead th {
         <tbody>
             <tr>
                 <th>
-                    <a class="btn btn-success btn-sm" href="{{ url_for('web.view', premium='megasena') }}">Acessar</a>
+                    <a class="btn btn-success btn-sm" href="{{ url_for('app_web.view', premium='megasena') }}">Acessar</a>
                 </th>
                 <th>
-                    <a class="btn btn-success btn-sm" href="{{ url_for('web.view',premium='lotofacil') }}">Acessar</a>
+                    <a class="btn btn-success btn-sm" href="{{ url_for('app_web.view',premium='lotofacil') }}">Acessar</a>
                     
                 </th>
                 <th>
-                    <a class="btn btn-success btn-sm" href="{{ url_for('web.view',premium='quina') }}">Acessar</a>
+                    <a class="btn btn-success btn-sm" href="{{ url_for('app_web.view',premium='quina') }}">Acessar</a>
                 </th>
             </tr>
         </tbody>
     </table>
 </div>
 <br>
-<a class="btn btn-info btn-lg btn-block" href="{{ url_for('web.update_csv') }}">Atualizar Dados</a>
+<a class="btn btn-info btn-lg btn-block" href="{{ url_for('app_web.update_csv') }}">Atualizar Dados</a>
 {% endblock %}

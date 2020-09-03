@@ -2,26 +2,26 @@ from datetime import datetime as dt
 from os import path
 
 from flask import Blueprint, render_template, request
-from flask_paginate import Pagination, get_page_parameter
-from pandas import read_csv
 
 from app.generate_csv import GeneratorCsv
 from app.lotteries_download import CaixaLotteriesDownload
+from flask_paginate import Pagination, get_page_parameter
+from pandas import read_csv
 
-app = Blueprint(
-    'web', __name__, url_prefix='/web/', template_folder='templates'
+app_web = Blueprint(
+    'app_web', __name__, url_prefix='/web/', template_folder='templates'
 )
 
 premium_allowed = ['megasena', 'lotofacil', 'quina']
 now = dt.now().strftime('%Y-%m-%d')
 
 
-@app.route('/')
+@app_web.route('/')
 def index():
     return render_template('lotteries_caixa/index.html')
 
 
-@app.route('/result/<premium>/')
+@app_web.route('/result/<premium>/')
 def view(premium):
 
     if premium in premium_allowed and path.exists(
@@ -41,7 +41,6 @@ def view(premium):
         row_data = csv[
             (page - 1) * PAGE_SIZE : page * PAGE_SIZE
         ].values.tolist()
-
 
         pagination = Pagination(
             page=page,
@@ -65,11 +64,10 @@ def view(premium):
     )
 
 
-@app.route('/update/')
+@app_web.route('/update/')
 def update_csv():
 
     list_premium = ['megase', 'quina', 'lotfac']
-    
 
     for name_file in list_premium:
         name = 'quina'

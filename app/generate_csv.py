@@ -2,8 +2,9 @@ from datetime import datetime as dt
 from os import makedirs, path
 from sys import argv
 
-import pandas as pd
 from rich.console import Console
+
+import pandas as pd
 
 console = Console()
 
@@ -83,7 +84,9 @@ class GeneratorCsv:
         data_csv = pd.DataFrame(data)
 
         makedirs(path_file, exist_ok=True)
-        data_csv.to_csv(f'{path_file}/{source_file}', index=False, chunksize=300)
+        data_csv.to_csv(
+            f'{path_file}/{source_file}', index=False, chunksize=300
+        )
 
         console.log(
             f'Arquivo [bold cyan]{source_file}[/bold cyan] criado com sucesso! '

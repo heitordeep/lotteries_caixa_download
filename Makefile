@@ -23,14 +23,14 @@ clean:  ## Clean python bytecodes, optimized files, cache, coverage...
 
 # ------ Installation requirements ------ #
 
-requirements: ## Install project packages
+requirements-pip: ## Install project packages
 	@pip install --upgrade pip
-	@pip install -r requirements_dev.txt 
+	@pip install -r requirements/requirements_dev.txt 
 
 # ----------- Run ----------- #
 
-run: clean ## Run script
-	python main.py $(search)
+run: clean ## Run script. Download files
+	@python download.py $(search)
 
-runserver: clean ## Run web site. Access 127.0.0.1:5000/web/
-	python run_web.py
+runserver: clean ## Run web site. Access 127.0.0.1:5000/web/ or 127.0.0.1:5000/api/
+	@python run.py

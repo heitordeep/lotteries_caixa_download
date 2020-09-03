@@ -33,11 +33,15 @@ def view(premium):
 
         csv.sort_values(by=['Concurso'], inplace=True, ascending=False)
 
+        csv = csv[csv['Cidade'].notna()]
+        csv = csv[csv['UF'].notna()]
+
         page = request.args.get(get_page_parameter(), type=int, default=1)
 
         row_data = csv[
             (page - 1) * PAGE_SIZE : page * PAGE_SIZE
         ].values.tolist()
+
 
         pagination = Pagination(
             page=page,

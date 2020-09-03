@@ -24,7 +24,7 @@ class CaixaLotteriesDownload:
 
             # Download File
             with open(f'{self.source_file}.zip', 'wb') as file_zip:
-                for data in self.response.iter_content():
+                for data in self.response.iter_content(chunk_size=250):
                     file_zip.write(data)
                 console.log(
                     f'Arquivo [bold cyan]{self.source_file}[/bold cyan] baixado com sucesso!'

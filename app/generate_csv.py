@@ -83,7 +83,7 @@ class GeneratorCsv:
         data_csv = pd.DataFrame(data)
 
         makedirs(path_file, exist_ok=True)
-        data_csv.to_csv(f'{path_file}/{source_file}', index=False)
+        data_csv.to_csv(f'{path_file}/{source_file}', index=False, chunksize=300)
 
         console.log(
             f'Arquivo [bold cyan]{source_file}[/bold cyan] criado com sucesso! '

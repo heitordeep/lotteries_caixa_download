@@ -1,15 +1,13 @@
-import json
-from csv import DictReader
 from datetime import datetime as dt
 from os import path
 
 from flask import Blueprint, render_template, request
-from flask_paginate import Pagination, get_page_parameter
-from pandas import read_csv
 
 from app.generate_csv import GeneratorCsv
 from app.lotteries_download import CaixaLotteriesDownload
 from db.connection import Database
+from flask_paginate import Pagination, get_page_parameter
+from pandas import read_csv
 
 app_web = Blueprint(
     'app_web', __name__, url_prefix='/web/', template_folder='templates'
@@ -32,7 +30,7 @@ def view(premium):
     if premium in premium_allowed and path.exists(
         f'lake/{premium}/{now}/tratado.csv'
     ):
-    
+
         PAGE_SIZE = 250
         csv = read_csv(f'lake/{premium}/{now}/tratado.csv')
 
@@ -91,10 +89,10 @@ def update_csv():
 
         csv = read_csv(f'lake/{name}/{now}/tratado.csv')
 
-        data_json = json.loads(csv.to_json(orient='records'))
-
-        for element in data_json:
-            db.insert(element)
+        data = csv.to_dict('records')
+        # TODO: Fix data storage in Mongodb - (Delay)
+        for row in data:
+            db.insert(name, row)
 
     return render_template(
         'lotteries_caixa/index.html',

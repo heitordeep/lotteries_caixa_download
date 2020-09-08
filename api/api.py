@@ -1,24 +1,23 @@
-import json
 from datetime import datetime as dt
-from os import path
 
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
+
+from db.connection import Database
 from flask_restplus import Api, Resource
-from pandas import read_csv
 
-api_caixa = Blueprint('api', __name__, url_prefix='/api')
+api_caixa = Blueprint('api', __name__)
 
 rest_api = Api(
     api_caixa,
     version='1.0',
     title='Lotteries Caixa API',
     description='List of Caixa Economica Federal prizes',
+    doc='/api/',
 )
 
-
 now = dt.now().strftime('%Y-%m-%d')
-
 api = rest_api.namespace('api', description='GET method only')
+db = Database()
 
 
 @api.route('/<premium>/')
@@ -33,17 +32,15 @@ class LotteriesCaixaApi(Resource):
         premium_allowed = ['megasena', 'lotofacil', 'quina']
 
         if premium in premium_allowed:
+            page = int(request.args.get('page', 1))
 
-            if path.exists(f'lake/{premium}/{now}/tratado.csv'):
+            limit = 150
+            skip = limit * page
 
-                csv = read_csv(f'lake/{premium}/{now}/tratado.csv')
-                csv.sort_values(by=['Concurso'], inplace=True, ascending=False)
+            # Search documents by collection.
+            documents = db.find_content(premium, limit=limit, skip=skip)
 
-                csv = csv[csv['Cidade'].notna()]
-                csv = csv[csv['UF'].notna()]
-
-                return jsonify(json.loads(csv.to_json(orient='records')))
-            rest_api.abort(404, f'Not found data in the date: {now}')
+            return jsonify(documents)
         rest_api.abort(404, f"{premium} doesn't exist")
 
     @rest_api.response(403, 'Not Authorized')

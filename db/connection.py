@@ -1,5 +1,7 @@
-from decouple import config
 from pymongo import MongoClient
+from pymongo.errors import ConnectionFailure
+
+from decouple import config
 
 
 class Database:
@@ -8,11 +10,29 @@ class Database:
             f'mongodb://{config("MONGO_URI")}:27017/{config("MONGO_DATABASE")}'
         )
         self.db = self.client[config('MONGO_DATABASE')]
-        self.collection = self.db[config('COLLECTION')]
 
-    def find_content(self, limit=0, skip=0):
-        return self.collection.find({})
+    def find_content(self, collection, limit=0, skip=0):
 
-    def insert(self, content):
-        new_content = {'$set': content}
-        return self.collection.update_one(content, new_content, upsert=True)
+        try:
+            documents = self.db[collection].find({}, limit=limit, skip=skip)
+            documents = list(documents)
+
+            # Remove ObjectId in _id
+            for i in range(len(documents)):
+                if '_id' in documents[i]:
+                    documents[i]['_id'] = str(documents[i]['_id'])
+
+            return documents
+
+        except ConnectionFailure as e:
+            return {'Error: ': e._message}
+
+    def insert(self, collection, content):
+
+        try:
+            new_content = {'$set': content}
+            return self.db[collection].update_one(
+                content, new_content, upsert=True
+            )
+        except ConnectionFailure as e:
+            return {'Error': e._message}

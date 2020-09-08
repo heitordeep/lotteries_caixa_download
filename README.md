@@ -11,9 +11,9 @@ Extracted data with Python.
 - [X] Create Web Page
 - [X] Create API
 - [X] Create API Documentation
-- [ ] Fix data entry in Mongodb
-- [ ] Create data view with Mongodb 
-- [ ] API Pagination
+- [ ] Fix data storage in Mongodb - (Delay)
+- [X] Create data view with Mongodb 
+- [X] API Pagination
 
 
 # :pushpin: Requirements:
@@ -67,7 +67,7 @@ Database: <img src="https://img.shields.io/badge/docker-mongodb-informational">
 
 # :computer: Run Web Page and API:
 - It is necessary to create an .env file with the following information: <br><br>
-   - ```.env```:  <br>**DEBUG=True**<br>**MONGO_URI=127.0.0.1** <br>**MONGO_DATABASE=Choose a name** <br>**COLLECTION=Choose a name**
+   - ```.env```:  <br>**DEBUG=True**<br>**MONGO_URI=127.0.0.1** <br>**MONGO_DATABASE=Choose a name** <br>
 
    - For Linux: <br>
         ```shell
@@ -78,15 +78,26 @@ Database: <img src="https://img.shields.io/badge/docker-mongodb-informational">
         ```shell
        $ python run.py
         ```
-- Access -> Web Page: http://127.0.0.1:5000/web/ or API: http://127.0.0.1:5000/api/ 
+- Access -> Web Page: http://127.0.0.1:5000/web/ or API: http://127.0.0.1:5000/api/
 
 <br>
   
-The data will be stored in the file.<br>
-For Example: <br>
+- The data will be stored in the file and Mongodb.<br><br>
+Consult File: <br><br>For Example: <br>
 **raw/megasena/2020-08-14/files** - (Raw Data) html<br>
 **swamp/megasena/2020-08-14/files** - (Raw Data) csv<br>
 **lake/megasena/2020-08-14/files**
+<br><br>
+- Consult MongoDb:<br><br>
+     ```shell
+     $ db.lotofacil.find({})
+     ```
+     ```shell
+     $ db.quina.find({})
+     ```
+     ```shell
+     $ db.megasena.find({})
+     ```
 <br>
 
 Result directories:<br>
@@ -96,6 +107,14 @@ Result directories:<br>
 
 Example the path file:<br>
 <img src='https://user-images.githubusercontent.com/17969551/90266840-04942880-de2b-11ea-9007-a127c0b241fc.png' width='500'>
+
+<br>
+
+Result MongoDB:<br><br>
+Example megasena:
+```json
+{ "_id" : ObjectId("5f57d2f536f72cb0f894e0c5"), "1ª Dezena" : 41, "2ª Dezena" : 5, "3ª Dezena" : 4, "4ª Dezena" : 52, "5ª Dezena" : 30, "6ª Dezena" : 33, "Acumulado" : "SIM", "Acumulado_Mega_da_Virada" : "000", "Arrecadacao_Total" : "000", "Cidade" : " ", "Concurso" : 1, "Data Sorteio" : "11/03/1996", "Estimativa_Prêmio" : "000", "Ganhadores_Quadra" : 2016, "Ganhadores_Quina" : 17, "Ganhadores_Sena" : 0, "Rateio_Quadra" : 33021, "Rateio_Quina" : 39.15892, "Rateio_Sena" : "000", "UF" : " ", "Valor_Acumulado" : "1.714.65023" }
+```
 
 # Do you need help with commands?
 

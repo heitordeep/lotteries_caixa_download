@@ -67,7 +67,7 @@ Database: <img src="https://img.shields.io/badge/docker-mongodb-informational">
 
 # :computer: Run Web Page and API:
 - It is necessary to create an .env file with the following information: <br><br>
-   - ```.env```:  **DEBUG=True**
+   - ```.env```:  <br>**DEBUG=True**<br>**MONGO_URI=127.0.0.1** <br>**MONGO_DATABASE=Choose a name** <br>**COLLECTION=Choose a name**
 
    - For Linux: <br>
         ```shell

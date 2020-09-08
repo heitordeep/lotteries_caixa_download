@@ -10,19 +10,30 @@ Extracted data with Python.
 - [X] Extract files
 - [X] Create Web Page
 - [X] Create API
+- [X] Create API Documentation
+- [ ] Fix data entry in Mongodb
+- [ ] Create data view with Mongodb 
 - [ ] API Pagination
 
 
 # :pushpin: Requirements:
 
 Library: <img src='https://img.shields.io/badge/Requests-2.24.0-informational'> <img src='https://img.shields.io/badge/Pandas-1.1.0-informational'><br>
-Linguage: <img src='https://camo.githubusercontent.com/2857442965ab9a51229c075102012bdbd340abc3/68747470733a2f2f696d672e736869656c64732e696f2f707970692f707976657273696f6e732f72657175657374733f6c6162656c3d507974686f6e266c6f676f3d505954484f4e266c6f676f436f6c6f723d79656c6c6f77267374796c653d706c6173746963'>
+Linguage: <img src='https://camo.githubusercontent.com/2857442965ab9a51229c075102012bdbd340abc3/68747470733a2f2f696d672e736869656c64732e696f2f707970692f707976657273696f6e732f72657175657374733f6c6162656c3d507974686f6e266c6f676f3d505954484f4e266c6f676f436f6c6f723d79656c6c6f77267374796c653d706c6173746963'> <br>
+Database: <img src="https://img.shields.io/badge/docker-mongodb-informational">
 
 - For Linux: <br>
    Installation requirements:<br>
     ```shell
     $ make requirements 
     ```
+
+    and 
+
+    ```shell
+    $ make up 
+    ```
+
 
 - For Windows: <br>
    Create venv and Installation requirements:<br>
@@ -33,6 +44,12 @@ Linguage: <img src='https://camo.githubusercontent.com/2857442965ab9a51229c07510
 
    ```shell
   $ pip install -r requirements/requirements_dev.txt
+    ```
+
+    and
+
+    ```shell
+    $ docker-compose up -d 
     ```
 
 # :rocket: Run the command:

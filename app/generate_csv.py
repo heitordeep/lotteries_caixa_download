@@ -2,9 +2,8 @@ from datetime import datetime as dt
 from os import makedirs, path
 from sys import argv
 
-from rich.console import Console
-
 import pandas as pd
+from rich.console import Console
 
 console = Console()
 

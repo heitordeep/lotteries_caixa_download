@@ -1,12 +1,15 @@
+import json
+from csv import DictReader
 from datetime import datetime as dt
 from os import path
 
 from flask import Blueprint, render_template, request
+from flask_paginate import Pagination, get_page_parameter
+from pandas import read_csv
 
 from app.generate_csv import GeneratorCsv
 from app.lotteries_download import CaixaLotteriesDownload
-from flask_paginate import Pagination, get_page_parameter
-from pandas import read_csv
+from db.connection import Database
 
 app_web = Blueprint(
     'app_web', __name__, url_prefix='/web/', template_folder='templates'
@@ -14,6 +17,8 @@ app_web = Blueprint(
 
 premium_allowed = ['megasena', 'lotofacil', 'quina']
 now = dt.now().strftime('%Y-%m-%d')
+
+db = Database()
 
 
 @app_web.route('/')
@@ -27,7 +32,7 @@ def view(premium):
     if premium in premium_allowed and path.exists(
         f'lake/{premium}/{now}/tratado.csv'
     ):
-
+    
         PAGE_SIZE = 250
         csv = read_csv(f'lake/{premium}/{now}/tratado.csv')
 
@@ -83,6 +88,14 @@ def update_csv():
         create_csv = GeneratorCsv()
         create_csv.convert_to_csv(name, f'd_{name_file}')
         create_csv.sanitize_csv(name)
+
+        csv = read_csv(f'lake/{name}/{now}/tratado.csv')
+
+        data_json = json.loads(csv.to_json(orient='records'))
+
+        for element in data_json:
+            db.insert(element)
+
     return render_template(
         'lotteries_caixa/index.html',
         message='Dados atualizados com sucesso',

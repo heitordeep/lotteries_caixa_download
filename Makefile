@@ -27,6 +27,11 @@ requirements-pip: ## Install project packages
 	@pip install --upgrade pip
 	@pip install -r requirements/requirements_dev.txt 
 
+# ----------- Docker ----------- #
+
+up:
+	@docker-compose up -d
+
 # ----------- Run ----------- #
 
 run: clean ## Run script. Download files

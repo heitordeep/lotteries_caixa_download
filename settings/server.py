@@ -9,10 +9,10 @@ def create_app(app_name=PKG_NAME, **kwargs):
     app = Flask(app_name)
     app.config['JSON_AS_ASCII'] = False
 
-    from api.api import api
+    from api.api import api_caixa
     from web.main import app_web
 
     app.register_blueprint(app_web)
-    app.register_blueprint(api)
+    app.register_blueprint(api_caixa)
 
     return app

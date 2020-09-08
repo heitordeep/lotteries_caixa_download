@@ -1,6 +1,5 @@
 from decouple import config
 from pymongo import MongoClient
-from pymongo.errors import DuplicateKeyError
 
 
 class Database:

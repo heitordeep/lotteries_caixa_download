@@ -11,7 +11,7 @@ rest_api = Api(
     api_caixa,
     version='1.0',
     title='Lotteries Caixa API',
-    description='List of Caixa Economica Federal prizes',
+    description='Handle list of awards',
     doc='/api/',
 )
 

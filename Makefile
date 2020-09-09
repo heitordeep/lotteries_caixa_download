@@ -33,13 +33,14 @@ requirements-prod: ## Install project packages prod
 
 # ----------- Docker ----------- #
 
-up:
-	@docker-compose up -d
+start: ## Create image mongoDb, Python and run app. Access 0.0.0.0:5000/web/ or 0.0.0.0:5000/api/ 
+	@docker-compose build
+	@docker-compose up
 
 # ----------- Run ----------- #
 
 run: clean ## Run script. Download files
 	@python download.py $(search)
 
-runserver: clean ## Run web site. Access 127.0.0.1:5000/web/ or 127.0.0.1:5000/api/
+runserver: clean ## Without docker: Run web site. Access 0.0.0.0:5000/web/ or 0.0.0.0:5000/api/
 	@python run.py

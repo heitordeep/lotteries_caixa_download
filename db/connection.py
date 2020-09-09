@@ -1,7 +1,6 @@
+from decouple import config
 from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure
-
-from decouple import config
 
 
 class Database:
@@ -17,11 +16,13 @@ class Database:
             documents = self.db[collection].find({}, limit=limit, skip=skip)
             documents = list(documents)
 
-            # Remove ObjectId in _id
+            # Remove ObjectId in _id and Nan.
             for i in range(len(documents)):
+                if str(documents[i]['Cidade']) == 'nan':
+                    documents[i]['Cidade'] = ''
                 if '_id' in documents[i]:
                     documents[i]['_id'] = str(documents[i]['_id'])
-
+               
             return documents
 
         except ConnectionFailure as e:

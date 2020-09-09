@@ -3,10 +3,9 @@ from os import path, remove
 from time import sleep
 from zipfile import ZipFile
 
-from rich.console import Console
-
 from requests import get
 from requests.exceptions import HTTPError
+from rich.console import Console
 
 console = Console()
 

@@ -40,17 +40,17 @@ class LotteriesCaixaApi(Resource):
             # Search documents by collection.
             documents = db.find_content(premium, limit=limit, skip=skip)
 
-            return jsonify(documents)
+            return jsonify(page=page, documents=documents)
         rest_api.abort(404, f"{premium} doesn't exist")
 
-    @rest_api.response(403, 'Not Authorized')
+    @rest_api.response(403, 'Method Forbidden')
     def post(self, premium):
         rest_api.abort(403)
 
-    @rest_api.response(403, 'Not Authorized')
+    @rest_api.response(403, 'Method Forbidden')
     def patch(self, premium):
         rest_api.abort(403)
 
-    @rest_api.response(403, 'Not Authorized')
+    @rest_api.response(403, 'Method Forbidden')
     def put(self, premium):
         rest_api.abort(403)

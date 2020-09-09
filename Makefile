@@ -23,9 +23,13 @@ clean:  ## Clean python bytecodes, optimized files, cache, coverage...
 
 # ------ Installation requirements ------ #
 
-requirements-pip: ## Install project packages
+requirements-pip: ## Install project packages dev.
 	@pip install --upgrade pip
 	@pip install -r requirements/requirements_dev.txt 
+
+requirements-prod: ## Install project packages prod
+	@pip install --upgrade pip
+	@pip install -r requirements/requirements.txt
 
 # ----------- Docker ----------- #
 

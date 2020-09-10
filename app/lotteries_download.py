@@ -3,11 +3,11 @@ from os import path, remove
 from time import sleep
 from zipfile import ZipFile
 
+from log_generator import RegisterLogs
 from requests import get
 from requests.exceptions import HTTPError
-from rich.console import Console
 
-console = Console()
+logger = RegisterLogs()
 
 
 class CaixaLotteriesDownload:
@@ -26,30 +26,36 @@ class CaixaLotteriesDownload:
             with open(f'{self.source_file}.zip', 'wb') as file_zip:
                 for data in self.response.iter_content(chunk_size=250):
                     file_zip.write(data)
-                console.log(
-                    f'Arquivo [bold cyan]{self.source_file}[/bold cyan] baixado com sucesso!'
+
+                logger.debug_register(
+                    f'{self.source_file} file downloaded successfully!'
                 )
 
             # Extracted File
             with ZipFile(f'{self.source_file}.zip', 'r') as extract_file:
                 extract_file.extractall(f'raw/{self.source_file}/{self.date}')
-            console.log(
-                f'Arquivo [bold cyan]{self.source_file}[/bold cyan] extraido com sucesso! '
-                f'Verifique na pasta raw/{self.source_file}/{self.date}'
+
+            logger.debug_register(
+                f'{self.source_file} file successfully extracted!'
             )
             remove(f'{self.source_file}.zip')
+            logger.debug_register(
+                f'{self.source_file}.zip file successfully removed!'
+            )
 
         except HTTPError as e:
             if self.count != 0:
-                console.log(
-                    f'{e}'
-                    f'\nAguarde [bold yellow]60[/bold yellow] segundos para tentar novamente.'
-                )
+                logger.debug_register(f'Error: {e} - Wait 60 seconds...')
                 sleep(60)
                 self.count -= 1
+                logger.debug_register(
+                    f'Retrying to download the {self.source_file} file...'
+                )
                 self.verification_http()
 
+            logger.debug_register(f'Error: {e} - Finish')
             raise SystemExit(f'Error: {e}')
 
         except Exception as e:
+            logger.debug_register(f'Error: {e} - Finish')
             raise SystemExit(f'Error: {e}')

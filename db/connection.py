@@ -1,6 +1,10 @@
-from decouple import config
 from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure
+
+from decouple import config
+from log_generator import RegisterLogs
+
+logger = RegisterLogs()
 
 
 class Database:
@@ -15,6 +19,9 @@ class Database:
         try:
             documents = self.db[collection].find({}, limit=limit, skip=skip)
             documents = list(documents)
+            logger.debug_register(
+                f'Reading {len(documents)} records of the {collection} documents!'
+            )
 
             # Remove ObjectId in _id and Nan.
             for i in range(len(documents)):
@@ -22,10 +29,11 @@ class Database:
                     documents[i]['Cidade'] = ''
                 if '_id' in documents[i]:
                     documents[i]['_id'] = str(documents[i]['_id'])
-               
+
             return documents
 
         except ConnectionFailure as e:
+            logger.error_register(f'Error: {e._message}')
             return {'Error: ': e._message}
 
     def insert(self, collection, content):
@@ -36,4 +44,5 @@ class Database:
                 content, new_content, upsert=True
             )
         except ConnectionFailure as e:
+            logger.error_register(f'Error: {e._message}')
             return {'Error': e._message}

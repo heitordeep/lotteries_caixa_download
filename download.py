@@ -1,11 +1,10 @@
 from sys import argv
 
-from rich.console import Console
-
 from app.generate_csv import GeneratorCsv
 from app.lotteries_download import CaixaLotteriesDownload
+from log_generator import RegisterLogs
 
-console = Console()
+logger = RegisterLogs()
 
 create_csv = GeneratorCsv()
 
@@ -21,7 +20,7 @@ if __name__ == "__main__":
     elif argv[1] == 'lotofacil':
         name_file = 'lotfac'
     else:
-        console.print(f'[bold red]Parameter {argv[1]} not exist![/bold red]')
+        logger.warning_register(f'Parameter {argv[1]} not exist!')
         exit()
 
     url = f'http://www1.caixa.gov.br/loterias/_arquivos/loterias/D_{name_file}.zip'

@@ -1,13 +1,14 @@
 from datetime import datetime as dt
-from os import path
+from os import path, system
 
 from flask import Blueprint, render_template, request
-from flask_paginate import Pagination, get_page_parameter
-from pandas import read_csv
 
 from app.generate_csv import GeneratorCsv
 from app.lotteries_download import CaixaLotteriesDownload
 from db.connection import Database
+from flask_paginate import Pagination, get_page_parameter
+from log_generator import RegisterLogs
+from pandas import read_csv
 
 app_web = Blueprint(
     'app_web', __name__, url_prefix='/web/', template_folder='templates'
@@ -17,6 +18,7 @@ premium_allowed = ['megasena', 'lotofacil', 'quina']
 now = dt.now().strftime('%Y-%m-%d')
 
 db = Database()
+logger = RegisterLogs()
 
 
 @app_web.route('/')
@@ -70,29 +72,27 @@ def view(premium):
 @app_web.route('/update/')
 def update_csv():
 
-    list_premium = ['megase', 'quina', 'lotfac']
+    list_premium = ['megasena', 'quina', 'lotofacil']
 
-    for name_file in list_premium:
-        name = 'quina'
-        url = f'http://www1.caixa.gov.br/loterias/_arquivos/loterias/D_{name_file}.zip'
+    for premium in list_premium:
+        system(f'python download.py {premium}')
 
-        if name_file == 'megase':
-            name = 'megasena'
-        elif name_file == 'lotfac':
-            name = 'lotofacil'
+        logger.debug_register(f'Successfully created {premium} file!')
 
-        get_file = CaixaLotteriesDownload(source_file=name, url=url)
-        get_file.verification_http()
-        create_csv = GeneratorCsv()
-        create_csv.convert_to_csv(name, f'd_{name_file}')
-        create_csv.sanitize_csv(name)
-
-        csv = read_csv(f'lake/{name}/{now}/tratado.csv')
+        logger.debug_register(
+            f'Reading lake/{premium}/{now}/tratado.csv file...'
+        )
+        csv = read_csv(f'lake/{premium}/{now}/tratado.csv')
 
         data = csv.to_dict('records')
         # TODO: Fix data storage in Mongodb - (Delay)
+        count = 0
         for row in data:
-            db.insert(name, row)
+            db.insert(premium, row)
+            count += 1
+        logger.debug_register(
+            f'Stored {premium} in the MongoDB! - {count} registers'
+        )
 
     return render_template(
         'lotteries_caixa/index.html',

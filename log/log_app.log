@@ -1,0 +1,77 @@
+INFO: 2020-09-10 03:33:59 -  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO: 2020-09-10 03:33:59 -  * Restarting with stat
+WARNING: 2020-09-10 03:34:00 -  * Debugger is active!
+INFO: 2020-09-10 03:34:00 -  * Debugger PIN: 184-303-074
+INFO: 2020-09-10 03:34:02 - 172.20.0.1 - - [10/Sep/2020 15:34:02] "GET /web/ HTTP/1.1" 200 -
+INFO: 2020-09-10 03:34:04 - 172.20.0.1 - - [10/Sep/2020 15:34:04] "GET /web/ HTTP/1.1" 200 -
+INFO: 2020-09-10 03:34:05 - 172.20.0.1 - - [10/Sep/2020 15:34:05] "GET /web/result/megasena/ HTTP/1.1" 200 -
+INFO: 2020-09-10 03:34:07 - 172.20.0.1 - - [10/Sep/2020 15:34:07] "GET /web/result/quina/ HTTP/1.1" 200 -
+INFO: 2020-09-10 03:34:08 - 172.20.0.1 - - [10/Sep/2020 15:34:08] "GET /web/result/lotofacil/ HTTP/1.1" 200 -
+INFO: 2020-09-10 03:34:08 - 172.20.0.1 - - [10/Sep/2020 15:34:08] "GET /web/result/megasena/ HTTP/1.1" 200 -
+INFO: 2020-09-10 03:34:09 - 172.20.0.1 - - [10/Sep/2020 15:34:09] "GET /web/ HTTP/1.1" 200 -
+DEBUG: 2020-09-10 03:34:10 - Starting new HTTP connection (1): www1.caixa.gov.br:80
+DEBUG: 2020-09-10 03:34:10 - http://www1.caixa.gov.br:80 "GET /loterias/_arquivos/loterias/D_megase.zip HTTP/1.1" 302 0
+DEBUG: 2020-09-10 03:34:10 - Resetting dropped connection: www1.caixa.gov.br
+DEBUG: 2020-09-10 03:34:10 - http://www1.caixa.gov.br:80 "GET /loterias/_arquivos/loterias/D_megase.zip HTTP/1.1" 200 None
+DEBUG: 2020-09-10 03:34:11 - megasena file downloaded successfully!
+DEBUG: 2020-09-10 03:34:11 - megasena file successfully extracted!
+DEBUG: 2020-09-10 03:34:11 - megasena.zip file successfully removed!
+DEBUG: 2020-09-10 03:34:11 - Reading d_mega.htm file...
+DEBUG: 2020-09-10 03:34:12 - Getting data d_mega file...
+DEBUG: 2020-09-10 03:34:12 - Created nao_tratado.csv file success! - Check in the folder swamp/megasena/2020-09-10
+DEBUG: 2020-09-10 03:34:12 - Searching swamp/megasena/2020-09-10/nao_tratado.csv...
+DEBUG: 2020-09-10 03:34:12 - nao_tratado.csv file found!
+DEBUG: 2020-09-10 03:34:12 - Getting data nao_tratado.csv...
+DEBUG: 2020-09-10 03:34:12 - Created tratado.csv file success! - Check in the folder lake/megasena/2020-09-10
+DEBUG: 2020-09-10 03:34:12 - Successfully created megasena file!
+DEBUG: 2020-09-10 03:34:12 - Reading lake/megasena/2020-09-10/tratado.csv file...
+DEBUG: 2020-09-10 03:34:17 - Stored megasena in the MongoDB! - 2572 registers
+DEBUG: 2020-09-10 03:34:17 - Starting new HTTP connection (1): www1.caixa.gov.br:80
+DEBUG: 2020-09-10 03:34:17 - http://www1.caixa.gov.br:80 "GET /loterias/_arquivos/loterias/D_quina.zip HTTP/1.1" 302 0
+DEBUG: 2020-09-10 03:34:17 - Resetting dropped connection: www1.caixa.gov.br
+DEBUG: 2020-09-10 03:34:17 - http://www1.caixa.gov.br:80 "GET /loterias/_arquivos/loterias/D_quina.zip HTTP/1.1" 200 None
+DEBUG: 2020-09-10 03:34:18 - quina file downloaded successfully!
+DEBUG: 2020-09-10 03:34:18 - quina file successfully extracted!
+DEBUG: 2020-09-10 03:34:18 - quina.zip file successfully removed!
+DEBUG: 2020-09-10 03:34:18 - Reading d_quina.htm file...
+DEBUG: 2020-09-10 03:34:22 - Getting data d_quina file...
+DEBUG: 2020-09-10 03:34:22 - Created nao_tratado.csv file success! - Check in the folder swamp/quina/2020-09-10
+DEBUG: 2020-09-10 03:34:22 - Searching swamp/quina/2020-09-10/nao_tratado.csv...
+DEBUG: 2020-09-10 03:34:22 - nao_tratado.csv file found!
+DEBUG: 2020-09-10 03:34:22 - Getting data nao_tratado.csv...
+DEBUG: 2020-09-10 03:34:22 - Created tratado.csv file success! - Check in the folder lake/quina/2020-09-10
+DEBUG: 2020-09-10 03:34:22 - Successfully created quina file!
+DEBUG: 2020-09-10 03:34:22 - Reading lake/quina/2020-09-10/tratado.csv file...
+DEBUG: 2020-09-10 03:34:50 - Stored quina in the MongoDB! - 8731 registers
+DEBUG: 2020-09-10 03:34:51 - Starting new HTTP connection (1): www1.caixa.gov.br:80
+DEBUG: 2020-09-10 03:34:51 - http://www1.caixa.gov.br:80 "GET /loterias/_arquivos/loterias/D_lotfac.zip HTTP/1.1" 302 0
+DEBUG: 2020-09-10 03:34:51 - Resetting dropped connection: www1.caixa.gov.br
+DEBUG: 2020-09-10 03:34:51 - http://www1.caixa.gov.br:80 "GET /loterias/_arquivos/loterias/D_lotfac.zip HTTP/1.1" 200 None
+DEBUG: 2020-09-10 03:34:52 - lotofacil file downloaded successfully!
+DEBUG: 2020-09-10 03:34:52 - lotofacil file successfully extracted!
+DEBUG: 2020-09-10 03:34:52 - lotofacil.zip file successfully removed!
+DEBUG: 2020-09-10 03:34:52 - Reading d_lotfac.htm file...
+DEBUG: 2020-09-10 03:34:54 - Getting data d_lotfac file...
+DEBUG: 2020-09-10 03:34:54 - Created nao_tratado.csv file success! - Check in the folder swamp/lotofacil/2020-09-10
+DEBUG: 2020-09-10 03:34:54 - Searching swamp/lotofacil/2020-09-10/nao_tratado.csv...
+DEBUG: 2020-09-10 03:34:54 - nao_tratado.csv file found!
+DEBUG: 2020-09-10 03:34:54 - Getting data nao_tratado.csv...
+DEBUG: 2020-09-10 03:34:54 - Created tratado.csv file success! - Check in the folder lake/lotofacil/2020-09-10
+DEBUG: 2020-09-10 03:34:54 - Successfully created lotofacil file!
+DEBUG: 2020-09-10 03:34:54 - Reading lake/lotofacil/2020-09-10/tratado.csv file...
+DEBUG: 2020-09-10 03:35:25 - Stored lotofacil in the MongoDB! - 8156 registers
+INFO: 2020-09-10 03:35:25 - 172.20.0.1 - - [10/Sep/2020 15:35:25] "GET /web/update/ HTTP/1.1" 200 -
+INFO: 2020-09-10 03:35:28 - 172.20.0.1 - - [10/Sep/2020 15:35:28] "GET /web/result/megasena/ HTTP/1.1" 200 -
+INFO: 2020-09-10 03:35:30 - 172.20.0.1 - - [10/Sep/2020 15:35:30] "GET /web/result/megasena/?page=5 HTTP/1.1" 200 -
+INFO: 2020-09-10 03:35:30 - 172.20.0.1 - - [10/Sep/2020 15:35:30] "GET /web/ HTTP/1.1" 200 -
+INFO: 2020-09-10 03:35:31 - 172.20.0.1 - - [10/Sep/2020 15:35:31] "GET /web/result/lotofacil/ HTTP/1.1" 200 -
+INFO: 2020-09-10 03:35:32 - 172.20.0.1 - - [10/Sep/2020 15:35:32] "GET /web/ HTTP/1.1" 200 -
+INFO: 2020-09-10 03:35:35 - 172.20.0.1 - - [10/Sep/2020 15:35:35] "GET /api/ HTTP/1.1" 200 -
+INFO: 2020-09-10 03:35:36 - 172.20.0.1 - - [10/Sep/2020 15:35:36] "GET /swagger.json HTTP/1.1" 200 -
+DEBUG: 2020-09-10 03:35:39 - Reading 150 records of the megasena documents!
+INFO: 2020-09-10 03:35:39 - 172.20.0.1 - - [10/Sep/2020 15:35:39] "GET /api/megasena/ HTTP/1.1" 200 -
+INFO: 2020-09-10 03:35:42 - 172.20.0.1 - - [10/Sep/2020 15:35:42] "GET /web/ HTTP/1.1" 200 -
+INFO: 2020-09-10 03:36:28 -  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO: 2020-09-10 03:36:28 -  * Restarting with stat
+WARNING: 2020-09-10 03:36:29 -  * Debugger is active!
+INFO: 2020-09-10 03:36:29 -  * Debugger PIN: 212-976-485

@@ -77,7 +77,7 @@ Database: <img src="https://img.shields.io/badge/Docker-MongoDB-informational"><
 
 # :computer: Run Web Page and API:
 - It is necessary to create an .env file with the following information: <br><br>
-   - ```.env```:  <br>**DEBUG=True**<br>**MONGO_URI=database** <br>**MONGO_DATABASE=Choose a name** <br>
+   - ```.env```:  <br>**DEBUG=False**<br>**MONGO_URI=database** <br>**MONGO_DATABASE=Choose a name** <br>
 
    - Command: <br>
         ```shell
@@ -92,6 +92,11 @@ Consult File: <br><br>For Example: <br>
 **raw/megasena/2020-08-14/files** - (Raw Data) html<br>
 **swamp/megasena/2020-08-14/files** - (Raw Data) csv<br>
 **lake/megasena/2020-08-14/files**
+<br><br>The files are in the docker. Get files:
+<br><br>
+    ```shell
+  $ docker cp {id}:/app/lake/ .
+  ```
 <br><br>
 - Consult MongoDb:<br><br>
      ```shell
@@ -125,3 +130,10 @@ Example megasena:
 
 - Linux only
 <img src='https://user-images.githubusercontent.com/17969551/89588975-208c3e80-d81b-11ea-9ba6-2fb460deca4b.png' width='600'>
+
+
+## :page_facing_up: Get App Logs:
+```shell
+$ docker cp {id}:/app/log/ .
+```
+

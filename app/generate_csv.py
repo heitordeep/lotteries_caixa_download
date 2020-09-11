@@ -3,6 +3,7 @@ from os import makedirs, path
 from sys import argv
 
 import pandas as pd
+
 from log_generator import RegisterLogs
 
 logger = RegisterLogs()

@@ -3,9 +3,10 @@ from os import path, remove
 from time import sleep
 from zipfile import ZipFile
 
-from log_generator import RegisterLogs
 from requests import get
 from requests.exceptions import HTTPError
+
+from log_generator import RegisterLogs
 
 logger = RegisterLogs()
 

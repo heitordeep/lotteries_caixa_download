@@ -1,7 +1,8 @@
 {% extends 'lotteries_caixa/base.html' %}
 
 {% block script %}
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
 {% endblock %}
 
 {% block title %}Lotteries Caixa Download{% endblock %}
@@ -11,9 +12,9 @@
 <p class="alert alert-{{color}}">{{ message }}</p>
 {% endif %}
 <style>
-table.table thead th {
-    padding:0;
-}
+    table.table thead th {
+        padding: 0;
+    }
 </style>
 
 <div class="table-responsive scrollit">
@@ -28,11 +29,13 @@ table.table thead th {
         <tbody>
             <tr>
                 <th>
-                    <a class="btn btn-success btn-sm" href="{{ url_for('app_web.view', premium='megasena') }}">Acessar</a>
+                    <a class="btn btn-success btn-sm"
+                        href="{{ url_for('app_web.view', premium='megasena') }}">Acessar</a>
                 </th>
                 <th>
-                    <a class="btn btn-success btn-sm" href="{{ url_for('app_web.view',premium='lotofacil') }}">Acessar</a>
-                    
+                    <a class="btn btn-success btn-sm"
+                        href="{{ url_for('app_web.view',premium='lotofacil') }}">Acessar</a>
+
                 </th>
                 <th>
                     <a class="btn btn-success btn-sm" href="{{ url_for('app_web.view',premium='quina') }}">Acessar</a>

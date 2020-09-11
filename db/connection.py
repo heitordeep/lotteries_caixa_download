@@ -1,7 +1,7 @@
+from decouple import config
 from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure
 
-from decouple import config
 from log_generator import RegisterLogs
 
 logger = RegisterLogs()

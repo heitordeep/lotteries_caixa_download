@@ -1,9 +1,9 @@
 from datetime import datetime as dt
 
 from flask import Blueprint, jsonify, request
+from flask_restplus import Api, Resource
 
 from db.connection import Database
-from flask_restplus import Api, Resource
 
 api_caixa = Blueprint('api', __name__)
 

@@ -1,14 +1,14 @@
 from datetime import datetime as dt
 from os import path, system
 
-from flask import Blueprint, render_template, request
+from flask import Blueprint, Response, render_template, request
+from flask_paginate import Pagination, get_page_parameter
+from pandas import read_csv
 
 from app.generate_csv import GeneratorCsv
 from app.lotteries_download import CaixaLotteriesDownload
 from db.connection import Database
-from flask_paginate import Pagination, get_page_parameter
 from log_generator import RegisterLogs
-from pandas import read_csv
 
 app_web = Blueprint(
     'app_web', __name__, url_prefix='/web/', template_folder='templates'
@@ -69,12 +69,10 @@ def view(premium):
     )
 
 
-@app_web.route('/update/')
+@app_web.route('/update/all/')
 def update_csv():
 
-    list_premium = ['megasena', 'quina', 'lotofacil']
-
-    for premium in list_premium:
+    for premium in premium_allowed:
         system(f'python download.py {premium}')
 
         logger.debug_register(f'Successfully created {premium} file!')

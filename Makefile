@@ -41,6 +41,3 @@ start: ## Create image mongoDb, Python and run app. Access 0.0.0.0:5000/web/ or 
 
 run: clean ## Run script. Download files
 	@python download.py $(search)
-
-runserver: clean ## Without docker: Run web site. Access 0.0.0.0:5000/web/ or 0.0.0.0:5000/api/
-	@python run.py

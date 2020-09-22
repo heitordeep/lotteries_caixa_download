@@ -18,7 +18,7 @@ class CaixaLotteriesDownload:
         self.source_file = source_file
         self.count = 2
 
-    def verification_http(self):
+    def extract_zip_file(self):
 
         try:
             self.response.raise_for_status()
@@ -52,11 +52,11 @@ class CaixaLotteriesDownload:
                 logger.debug_register(
                     f'Retrying to download the {self.source_file} file...'
                 )
-                self.verification_http()
+                self.extract_zip_file()
 
-            logger.debug_register(f'Error: {e} - Finish')
-            raise SystemExit(f'Error: {e}')
+            logger.debug_register(f'{e} - Finish')
+            raise SystemExit(f'{e} - Finish')
 
         except Exception as e:
-            logger.debug_register(f'Error: {e} - Finish')
-            raise SystemExit(f'Error: {e}')
+            logger.debug_register(f'{e} - Finish')
+            raise SystemExit(f'{e} - Finish')

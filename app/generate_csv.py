@@ -13,51 +13,63 @@ class GeneratorCsv:
     def __init__(self):
         self.date = dt.now().strftime('%Y-%m-%d')
 
-    def convert_to_csv(self, name_directory, name_file):
+    def read_file(self, tag, path_name):
+
+        try:
+
+            if tag == 'html':
+                return pd.read_html(path_name)
+            elif tag == 'csv':
+                return pd.read_csv(path_name)
+            else:
+                raise SystemExit(f"Error: Parameter {tag} forbidden!")
+
+        except Exception as e:
+            raise SystemExit(f'Error: {e}')
+
+    def convert_to_csv(self, directory_name, name_file):
 
         if name_file == 'd_megase':
             name_file = 'd_mega'
 
-        if path.exists(f'raw/{name_directory}/{self.date}/{name_file}.htm'):
+        path_name = f'raw/{directory_name}/{self.date}/{name_file}.htm'
+        df = self.read_file('html', path_name)
+
+        # Tentar jogar para read_file.
+        if path.exists(path_name):
+
             logger.debug_register(f'Reading {name_file}.htm file...')
 
-            df = pd.read_html(
-                f'raw/{name_directory}/{self.date}/{name_file}.htm'
-            )
-
-            df = df[0]
-
-            data = {}
+            df = self.read_file('html', path_name)
 
             logger.debug_register(f'Getting data {name_file} file...')
 
-            for key, value in df.items():
-                data.update({key: value})
-
             self.create_csv(
-                data=data,
-                path_file=f'swamp/{name_directory}/{self.date}',
+                data=df[0],
+                path_file=f'swamp/{directory_name}/{self.date}',
                 source_file='nao_tratado.csv',
             )
 
-    def sanitize_csv(self, name_directory):
+    def sanitize_csv(self, directory_name):
 
-        path_file = f'swamp/{name_directory}/{self.date}/nao_tratado.csv'
+        path_name = f'swamp/{directory_name}/{self.date}/nao_tratado.csv'
 
         logger.debug_register(
-            f'Searching swamp/{name_directory}/{self.date}/nao_tratado.csv...'
+            f'Searching swamp/{directory_name}/{self.date}/nao_tratado.csv...'
         )
-        if path.exists(path_file):
+        if path.exists(path_name):
 
             logger.debug_register('nao_tratado.csv file found!')
 
-            df = pd.read_csv(f'{path_file}')
+            df = self.read_file('csv', path_name)
+
             sanitize_city = df['Cidade'].replace(['&nbsp'], ' ')
             sanitize_uf = df['UF'].replace(['&nbsp'], ' ')
 
             data = {}
 
             logger.debug_register('Getting data nao_tratado.csv...')
+
             for key, value in df.items():
                 if key == 'Cidade':
                     data.update({key: sanitize_city})
@@ -68,7 +80,7 @@ class GeneratorCsv:
 
             self.create_csv(
                 data=data,
-                path_file=f'lake/{name_directory}/{self.date}',
+                path_file=f'lake/{directory_name}/{self.date}',
                 source_file='tratado.csv',
             )
 

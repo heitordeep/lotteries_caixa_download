@@ -11,7 +11,7 @@ rest_api = Api(
     api_caixa,
     version='1.0',
     title='Lotteries Caixa API',
-    description='Handle list of awards',
+    description='Handle list of prizes',
     doc='/api/',
 )
 
@@ -20,37 +20,37 @@ api = rest_api.namespace('api', description='GET method only')
 db = Database()
 
 
-@api.route('/<premium>/')
+@api.route('/<prize>/')
 @api.doc(
     params={
-        'premium': 'Enter the names of the prizes: mega sena, lotofacil or quina'
+        'prize': 'Enter the names of the prizes: mega sena, lotofacil or quina'
     },
 )
 class LotteriesCaixaApi(Resource):
-    def get(self, premium):
+    def get(self, prize):
 
-        premium_allowed = ['megasena', 'lotofacil', 'quina']
+        prize_allowed = ['megasena', 'lotofacil', 'quina']
 
-        if premium in premium_allowed:
+        if prize in prize_allowed:
             page = int(request.args.get('page', 1))
 
             limit = 150
             skip = limit * page
 
             # Search documents by collection.
-            documents = db.find_content(premium, limit=limit, skip=skip)
+            documents = db.find_content(prize, limit=limit, skip=skip)
 
             return jsonify(page=page, documents=documents)
-        rest_api.abort(404, f"{premium} doesn't exist")
+        rest_api.abort(404, f"{prize} doesn't exist!")
 
-    @rest_api.response(403, 'Method Forbidden')
-    def post(self, premium):
+    @rest_api.response(403, 'Method Forbidden!')
+    def post(self, prize):
         rest_api.abort(403)
 
-    @rest_api.response(403, 'Method Forbidden')
-    def patch(self, premium):
+    @rest_api.response(403, 'Method Forbidden!')
+    def patch(self, prize):
         rest_api.abort(403)
 
-    @rest_api.response(403, 'Method Forbidden')
-    def put(self, premium):
+    @rest_api.response(403, 'Method Forbidden!')
+    def put(self, prize):
         rest_api.abort(403)

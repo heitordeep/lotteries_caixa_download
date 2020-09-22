@@ -14,7 +14,7 @@ app_web = Blueprint(
     'app_web', __name__, url_prefix='/web/', template_folder='templates'
 )
 
-premium_allowed = ['megasena', 'lotofacil', 'quina']
+prize_allowed = ['megasena', 'lotofacil', 'quina']
 now = dt.now().strftime('%Y-%m-%d')
 
 db = Database()
@@ -26,15 +26,15 @@ def index():
     return render_template('lotteries_caixa/index.html')
 
 
-@app_web.route('/result/<premium>/')
-def view(premium):
+@app_web.route('/result/<prize>/')
+def view(prize):
 
-    if premium in premium_allowed and path.exists(
-        f'lake/{premium}/{now}/tratado.csv'
+    if prize in prize_allowed and path.exists(
+        f'lake/{prize}/{now}/tratado.csv'
     ):
 
         PAGE_SIZE = 250
-        csv = read_csv(f'lake/{premium}/{now}/tratado.csv')
+        csv = read_csv(f'lake/{prize}/{now}/tratado.csv')
 
         csv.sort_values(by=['Concurso'], inplace=True, ascending=False)
 
@@ -56,14 +56,14 @@ def view(premium):
 
         return render_template(
             'lotteries_caixa/view.html',
-            title=premium,
+            title=prize,
             headers=csv.columns.values,
             row_data=row_data,
             pagination=pagination,
         )
     return render_template(
         'lotteries_caixa/index.html',
-        message=f'Not Found {premium.upper()} element!'
+        message=f'Not Found {prize.upper()} element!'
         f' Click in the button "Atualizar Dados"',
         color='danger',
     )
@@ -72,24 +72,24 @@ def view(premium):
 @app_web.route('/update/all/')
 def update_csv():
 
-    for premium in premium_allowed:
-        system(f'python download.py {premium}')
+    for prize in prize_allowed:
+        system(f'python download.py {prize}')
 
-        logger.debug_register(f'Successfully created {premium} file!')
+        logger.debug_register(f'Successfully created {prize} file!')
 
         logger.debug_register(
-            f'Reading lake/{premium}/{now}/tratado.csv file...'
+            f'Reading lake/{prize}/{now}/tratado.csv file...'
         )
-        csv = read_csv(f'lake/{premium}/{now}/tratado.csv')
+        csv = read_csv(f'lake/{prize}/{now}/tratado.csv')
 
         data = csv.to_dict('records')
         # TODO: Fix data storage in Mongodb - (Delay)
         count = 0
         for row in data:
-            db.insert(premium, row)
+            db.insert(prize, row)
             count += 1
         logger.debug_register(
-            f'Stored {premium} in the MongoDB! - {count} registers'
+            f'Stored {prize} in the MongoDB! - {count} registers'
         )
 
     return render_template(

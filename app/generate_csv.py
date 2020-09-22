@@ -33,9 +33,8 @@ class GeneratorCsv:
             name_file = 'd_mega'
 
         path_name = f'raw/{directory_name}/{self.date}/{name_file}.htm'
-        df = self.read_file('html', path_name)
 
-        # Tentar jogar para read_file.
+        #TODO: Tentar jogar para read_file.
         if path.exists(path_name):
 
             logger.debug_register(f'Reading {name_file}.htm file...')

@@ -44,11 +44,7 @@ Database: <img src="https://img.shields.io/badge/Docker-MongoDB-informational"><
 
      Create image MongoDb, Python and run app :<br><br>
      ```shell
-     $ docker-compose build 
-     ```
-     and 
-     ```shell
-     $ docker-compose up
+     $ docker-compose up -d
      ```
 
    - Without Docker. Download Files of Caixa:<br><br>
@@ -92,11 +88,9 @@ Consult File: <br><br>For Example: <br>
 **raw/megasena/2020-08-14/files** - (Raw Data) html<br>
 **swamp/megasena/2020-08-14/files** - (Raw Data) csv<br>
 **lake/megasena/2020-08-14/files**
-<br><br>The files are in the docker. Get files:
 <br><br>
-    ```shell
-  $ docker cp {id}:/app/lake/ .
-  ```
+OBS: **The files are in the directory lake. Get files.**
+
 <br><br>
 - Consult MongoDb:<br><br>
      ```shell
@@ -133,7 +127,12 @@ Example megasena:
 
 
 ## :page_facing_up: Get App Logs:
-```shell
-$ docker cp {id}:/app/log/ .
-```
+
+- Without Docker. The logs is in the directory: **log**
+
+- With Docker:
+
+  ```shell
+  $ docker cp {id}:/app/log/ .
+  ```
 

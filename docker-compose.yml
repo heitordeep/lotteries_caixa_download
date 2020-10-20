@@ -3,12 +3,16 @@ services:
   web:
     build: .
     command: python run.py
+    container_name: caixa_download
     ports:
       - "5000:5000"
+    volumes:
+      - ./lake:/app/lake/
     links:
       - database
   
   database:
     image: mongo
+    container_name: bd_caixa_download
     ports:
       - "27017:27017"

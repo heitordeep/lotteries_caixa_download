@@ -11,7 +11,7 @@ Extracted data with Python.
 - [X] Create Web Page
 - [X] Create API
 - [X] Create API Documentation
-- [ ] Fix data storage in Mongodb - (Delay)
+- [X] Fix data storage in Mongodb - (Delay)
 - [X] Create data view with Mongodb 
 - [X] API Pagination
 - [X] App in the Docker
@@ -73,13 +73,19 @@ Database: <img src="https://img.shields.io/badge/Docker-MongoDB-informational"><
 
 # :computer: Run Web Page and API:
 - It is necessary to create an .env file with the following information: <br><br>
-   - ```.env```:  <br>**DEBUG=False**<br>**MONGO_URI=database** <br>**MONGO_DATABASE=Choose a name** <br>
+   - ```.env```:  <br>**URI=database** <br>**DATABASE=Choose a name**<br>
 
    - Command: <br>
         ```shell
         $ docker start {id}
         ```
-- Access -> Web Page: http://0.0.0.0:5000/web/ or API: http://0.0.0.0:5000/api/
+- Access with Docker:<br>
+  - Web Page: http://0.0.0.0/web/
+  - API: http://0.0.0.0/api/
+
+- Access without Docker: <br>
+  - Web Page: http://0.0.0.0:8080/web/
+  - API: http://0.0.0.0:8080/api/
 
 <br>
   
@@ -128,11 +134,11 @@ Example megasena:
 
 ## :page_facing_up: Get App Logs:
 
-- Without Docker. The logs is in the directory: **log**
+- The logs is in the directory: **log**
 
-- With Docker:
-
-  ```shell
-  $ docker cp {id}:/app/log/ .
-  ```
-
+## Test on endpoint API:
+- Return default: 150 
+- Example:
+  - megasena: ```curl http://0.0.0.0/api/megasena?limit=300```
+  - quina: ```curl http://0.0.0.0/api/quina?page=2```
+  - lotofacil: ```curl http://0.0.0.0/api/lotofacil```

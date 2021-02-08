@@ -1,6 +1,7 @@
 from datetime import datetime as dt
 from os import path, system
 
+from bson import ObjectId
 from flask import Blueprint, Response, render_template, request
 from flask_paginate import Pagination, get_page_parameter
 from pandas import read_csv
@@ -82,15 +83,10 @@ def update_csv():
         )
         csv = read_csv(f'lake/{prize}/{now}/tratado.csv')
 
-        data = csv.to_dict('records')
-        # TODO: Fix data storage in Mongodb - (Delay)
-        count = 0
-        for row in data:
-            db.insert(prize, row)
-            count += 1
-        logger.debug_register(
-            f'Stored {prize} in the MongoDB! - {count} registers'
-        )
+        payload = csv.to_dict('records')
+
+        db.drop(prize)  # Drop prize collection.
+        db.insert(prize, payload)
 
     return render_template(
         'lotteries_caixa/index.html',

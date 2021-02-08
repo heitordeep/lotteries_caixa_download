@@ -2,15 +2,18 @@ version: "3"
 services:
   web:
     build: .
-    command: python run.py
+    command: gunicorn -b 0.0.0.0:8080 -w 3 main:app --timeout 120
     container_name: caixa_download
     ports:
-      - "5000:5000"
+      - "80:8080"
     volumes:
       - ./lake:/app/lake/
+      - ./log:/app/log/
+    env_file:
+      - .env
     links:
       - database
-  
+        
   database:
     image: mongo
     container_name: bd_caixa_download

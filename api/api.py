@@ -20,7 +20,7 @@ api = rest_api.namespace('api', description='GET method only')
 db = Database()
 
 
-@api.route('/<prize>/')
+@api.route('/<prize>')
 @api.doc(
     params={
         'prize': 'Enter the names of the prizes: mega sena, lotofacil or quina'
@@ -30,17 +30,20 @@ class LotteriesCaixaApi(Resource):
     def get(self, prize):
 
         prize_allowed = ['megasena', 'lotofacil', 'quina']
+        limit_allowed = 150
 
         if prize in prize_allowed:
             page = int(request.args.get('page', 1))
+            limit = int(request.args.get('limit', limit_allowed))
 
-            limit = 150
             skip = limit * page
 
             # Search documents by collection.
             documents = db.find_content(prize, limit=limit, skip=skip)
 
-            return jsonify(page=page, documents=documents)
+            return jsonify(
+                page=page, count_data=len(documents), documents=documents
+            )
         rest_api.abort(404, f"{prize} doesn't exist!")
 
     @rest_api.response(403, 'Method Forbidden!')

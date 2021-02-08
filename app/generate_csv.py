@@ -48,7 +48,7 @@ class GeneratorCsv:
         logger.debug_register(
             f'Searching swamp/{directory_name}/{self.date}/nao_tratado.csv...'
         )
-        
+
         logger.debug_register('nao_tratado.csv file found!')
 
         df = self.read_file('csv', path_name)

@@ -95,7 +95,7 @@ Consult File: <br><br>For Example: <br>
 **swamp/megasena/2020-08-14/files** - (Raw Data) csv<br>
 **lake/megasena/2020-08-14/files**
 <br><br>
-OBS: **The files are in the directory lake. Get files.**
+OBS: **The files are in the directory lake.**
 
 <br><br>
 - Consult MongoDb:<br><br>

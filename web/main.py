@@ -1,13 +1,10 @@
 from datetime import datetime as dt
 from os import path, system
 
-from bson import ObjectId
-from flask import Blueprint, Response, render_template, request
+from flask import Blueprint, render_template, request
 from flask_paginate import Pagination, get_page_parameter
 from pandas import read_csv
 
-from app.generate_csv import GeneratorCsv
-from app.lotteries_download import CaixaLotteriesDownload
 from db.connection import Database
 from log_generator import RegisterLogs
 

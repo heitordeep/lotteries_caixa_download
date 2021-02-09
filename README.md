@@ -23,7 +23,7 @@ Linguage: <img src='https://camo.githubusercontent.com/2857442965ab9a51229c07510
 Database: <img src="https://img.shields.io/badge/Docker-MongoDB-informational"><br><br>
 
 
-- For Linux: <br><br>
+- Linux: <br><br>
   - Docker Server:<br><br>
     Create image MongoDb, Python and run app :<br><br>
     ```shell
@@ -39,7 +39,7 @@ Database: <img src="https://img.shields.io/badge/Docker-MongoDB-informational"><
 <br>
 
 
-- For Windows: <br><br>
+- Windows: <br><br>
    - Docker Server:<br><br>
 
      Create image MongoDb, Python and run app :<br><br>
@@ -60,12 +60,12 @@ Database: <img src="https://img.shields.io/badge/Docker-MongoDB-informational"><
 
 # :rocket: Run the command without Docker:
 - Parameters: **megasena | quina | lotofacil** <br>
-   - For Linux: <br>
+   - Linux: <br>
         ```shell
         $ make run search="Parameters"
         ```
 
-   - For Windows:<br>
+   - Windows:<br>
         ```shell
        $ python download.py "Parameters"
         ```
@@ -137,8 +137,197 @@ Example megasena:
 - The logs is in the directory: **log**
 
 ## Test on endpoint API:
-- Return default: 150 
+- Return default: 300 
+- Search the document: **term and search**
 - Example:
-  - megasena: ```curl http://0.0.0.0/api/megasena?limit=300```
-  - quina: ```curl http://0.0.0.0/api/quina?page=2```
-  - lotofacil: ```curl http://0.0.0.0/api/lotofacil```
+  - megasena: 
+  ```shell
+  curl http://0.0.0.0/api/megasena?term=Data%20Sorteio&search=09/01/1999
+  ```
+  - quina: 
+  ```shell
+  curl http://0.0.0.0/api/quina?limit=2
+  ```
+
+  ```shell 
+  curl http://0.0.0.0/api/quina?term=UF&search=MG&page=7&limit=1
+  ```
+  
+  - lotofacil:
+  ```shell
+  curl http://0.0.0.0/api/lotofacil?term=UF&search=SP&limit=1
+  ```
+
+## Result:
+
+- megasena: <br>
+```json
+{
+  "count_data": 1, 
+  "documents": [
+    {
+      "_id": "6022c6a9cacdf9adf128ddc6", 
+      "Concurso": 149, 
+      "Data Sorteio": "09/01/1999", 
+      "1ª Dezena": 11, 
+      "2ª Dezena": 45, 
+      "3ª Dezena": 48, 
+      "4ª Dezena": 7, 
+      "5ª Dezena": 28, 
+      "6ª Dezena": 20, 
+      "Arrecadacao_Total": "000", 
+      "Ganhadores_Sena": 0, 
+      "Cidade": "null", 
+      "UF": "null", 
+      "Rateio_Sena": "000", 
+      "Ganhadores_Quina": 106, 
+      "Rateio_Quina": 9.79513, 
+      "Ganhadores_Quadra": 6290, 
+      "Rateio_Quadra": 16474.0, 
+      "Acumulado": "SIM", 
+      "Valor_Acumulado": "2.211.82094", 
+      "Estimativa_Prêmio": "000", 
+      "Acumulado_Mega_da_Virada": "000"
+    }
+  ]
+}
+``` 
+
+- quina:<br> 
+```json
+{
+  "count_data": 2, 
+  "documents": [
+    {
+      "_id": "6022c6b4cacdf9adf12908d2", 
+      "Concurso": 1, 
+      "Data Sorteio": "13/03/1994", 
+      "1ª Dezena": 25, 
+      "2ª Dezena": 45, 
+      "3ª Dezena": 60, 
+      "4ª Dezena": 76, 
+      "5ª Dezena": 79, 
+      "Arrecadacao_Total": "000", 
+      "Ganhadores_Quina": 3, 
+      "Cidade": "null", 
+      "UF": "null", 
+      "Rateio_Quina": "75.731.22500", 
+      "Ganhadores_Quadra": 127, 
+      "Rateio_Quadra": "1.788.92700", 
+      "Ganhadores_Terno": 7030, 
+      "Rateio_Terno": 42.982, 
+      "Ganhadores_Duque": 0, 
+      "Rateio_Duque": 0, 
+      "Acumulado": "NÃO", 
+      "Valor_Acumulado": "000", 
+      "Estimativa_Premio": "000", 
+      "Valor_Acumulado_Sorteio_Especial_São_João": "000"
+    }, 
+    {
+      "_id": "6022c6b4cacdf9adf12908d3", 
+      "Concurso": 2, 
+      "Data Sorteio": "17/03/1994", 
+      "1ª Dezena": 13, 
+      "2ª Dezena": 30, 
+      "3ª Dezena": 58, 
+      "4ª Dezena": 63, 
+      "5ª Dezena": 64, 
+      "Arrecadacao_Total": "000", 
+      "Ganhadores_Quina": 1, 
+      "Cidade": "null", 
+      "UF": "null", 
+      "Rateio_Quina": "118.499.39700", 
+      "Ganhadores_Quadra": 105, 
+      "Rateio_Quadra": "1.128.56500", 
+      "Ganhadores_Terno": 4861, 
+      "Rateio_Terno": 32.422, 
+      "Ganhadores_Duque": 0, 
+      "Rateio_Duque": 0, 
+      "Acumulado": "NÃO", 
+      "Valor_Acumulado": "000", 
+      "Estimativa_Premio": "000", 
+      "Valor_Acumulado_Sorteio_Especial_São_João": "000"
+    }
+  ]
+}
+```
+
+Other example:<br>
+```json
+{
+  "count_data": 1, 
+  "documents": [
+    {
+      "_id": "6022c6b4cacdf9adf1290b98", 
+      "Concurso": 670, 
+      "Data Sorteio": "04/03/2000", 
+      "1ª Dezena": 30, 
+      "2ª Dezena": 76, 
+      "3ª Dezena": 34, 
+      "4ª Dezena": 8, 
+      "5ª Dezena": 18, 
+      "Arrecadacao_Total": "000", 
+      "Ganhadores_Quina": 2, 
+      "Cidade": "null", 
+      "UF": "MG", 
+      "Rateio_Quina": "315.26656", 
+      "Ganhadores_Quadra": 340, 
+      "Rateio_Quadra": "1.07814", 
+      "Ganhadores_Terno": 14319, 
+      "Rateio_Terno": 3402.0, 
+      "Ganhadores_Duque": 0, 
+      "Rateio_Duque": 0, 
+      "Acumulado": "NÃO", 
+      "Valor_Acumulado": "000", 
+      "Estimativa_Premio": "000", 
+      "Valor_Acumulado_Sorteio_Especial_São_João": "000"
+    }
+  ]
+}
+``` 
+
+- lotofacil: <br>
+```json
+{
+  "count_data": 1, 
+  "documents": [
+    {
+      "_id": "6022c6aecacdf9adf128e76d", 
+      "Concurso": 1, 
+      "Data Sorteio": "29/09/2003", 
+      "Bola1": 18, 
+      "Bola2": 20, 
+      "Bola3": 25, 
+      "Bola4": 23, 
+      "Bola5": 10, 
+      "Bola6": 11, 
+      "Bola7": 24, 
+      "Bola8": 14, 
+      "Bola9": 6, 
+      "Bola10": 2, 
+      "Bola11": 13, 
+      "Bola12": 9, 
+      "Bola13": 5, 
+      "Bola14": 16, 
+      "Bola15": 3, 
+      "Arrecadacao_Total": "000", 
+      "Ganhadores_15_Números": 5, 
+      "Cidade": "null", 
+      "UF": "SP", 
+      "Ganhadores_14_Números": 154, 
+      "Ganhadores_13_Números": 4645, 
+      "Ganhadores_12_Números": 48807, 
+      "Ganhadores_11_Números": 257593, 
+      "Valor_Rateio_15_Números": "49.76582", 
+      "Valor_Rateio_14_Números": 68984.0, 
+      "Valor_Rateio_13_Números": 1000, 
+      "Valor_Rateio_12_Números": 400, 
+      "Valor_Rateio_11_Números": 200, 
+      "Acumulado_15_Números": "000", 
+      "Estimativa_Premio": "000", 
+      "Valor_Acumulado_Especial": "000"
+    }
+  ]
+}
+```
+

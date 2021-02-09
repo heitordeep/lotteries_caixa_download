@@ -1,5 +1,3 @@
-from datetime import datetime as dt
-
 from flask import Blueprint, jsonify, request
 from flask_restplus import Api, Resource
 
@@ -15,7 +13,6 @@ rest_api = Api(
     doc='/api/',
 )
 
-now = dt.now().strftime('%Y-%m-%d')
 api = rest_api.namespace('api', description='GET method only')
 db = Database()
 
@@ -23,23 +20,25 @@ db = Database()
 @api.route('/<prize>')
 @api.doc(
     params={
-        'prize': 'Enter the names of the prizes: mega sena, lotofacil or quina'
+        'prize': 'Enter the names of the prizes: mega sena, lotofacil or quina. Return default: 300 element.'
     },
 )
-class LotteriesCaixaApi(Resource):
+class HandleAllPrizes(Resource):
     def get(self, prize):
 
         prize_allowed = ['megasena', 'lotofacil', 'quina']
-        limit_allowed = 150
+        limit_allowed = 300
 
         if prize in prize_allowed:
             page = int(request.args.get('page', 1))
             limit = int(request.args.get('limit', limit_allowed))
+            term = request.args.get('term', 'Data Sorteio')
+            search = request.args.get('search', {'$gt': '01/01/1900'})
 
-            skip = limit * page
+            # Search documents by collection and term.
+            query = {term: search}
 
-            # Search documents by collection.
-            documents = db.find_content(prize, limit=limit, skip=skip)
+            documents = db.find_content(query, prize, limit=limit, skip=page)
 
             return jsonify(
                 page=page, count_data=len(documents), documents=documents

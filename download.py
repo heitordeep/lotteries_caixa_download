@@ -12,7 +12,7 @@ list_prizes_allowed = {
     'lotofacil': 'lotfac',
 }
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     # Parameters: megasena | quina | lotofacil
 
     prize = argv[1]

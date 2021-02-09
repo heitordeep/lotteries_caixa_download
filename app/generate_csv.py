@@ -52,7 +52,7 @@ class GeneratorCsv:
         logger.debug_register('nao_tratado.csv file found!')
 
         df = self.read_file('csv', path_name)
-
+        
         df['Cidade'] = df['Cidade'].replace(['&nbsp'], ' ')
         df['UF'] = df['UF'].replace(['&nbsp'], ' ')
 

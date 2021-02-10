@@ -25,10 +25,11 @@ Linguage: <img src='https://camo.githubusercontent.com/2857442965ab9a51229c07510
 Database: <img src="https://img.shields.io/badge/Docker-MongoDB-informational"><br><br>
 
 
-- It is necessary to create an .env file with the following information: 
+## It is necessary to create an .env file with the following information: 
    - ```.env```:  <br>**URI=database** <br>**DATABASE=Choose a name**<br>
 
-- Create images: <br>
+
+## Create images: <br>
   - Linux: <br>
     ```shell
     $ make start 

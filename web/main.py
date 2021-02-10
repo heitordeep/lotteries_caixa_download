@@ -34,10 +34,10 @@ def view(prize):
         PAGE_SIZE = 250
         csv = read_csv(f'lake/{prize}/{now}/tratado.csv')
 
-        csv.sort_values(by=['Concurso'], inplace=True, ascending=False)
+        csv.sort_values(by=['concurso'], inplace=True, ascending=False)
 
-        csv = csv[csv['Cidade'].notna()]
-        csv = csv[csv['UF'].notna()]
+        csv = csv[csv['cidade'].notna()]
+        csv = csv[csv['uf'].notna()]
 
         page = request.args.get(get_page_parameter(), type=int, default=1)
 
@@ -79,11 +79,14 @@ def update_csv():
             f'Reading lake/{prize}/{now}/tratado.csv file...'
         )
         csv = read_csv(f'lake/{prize}/{now}/tratado.csv')
+        csv = csv.astype(str)  # Transform rows on string.
 
         payload = csv.to_dict('records')
 
         db.drop(prize)  # Drop prize collection.
         db.insert(prize, payload)
+
+        logger.debug_register(f'{prize} saved successfully.')
 
     return render_template(
         'lotteries_caixa/index.html',

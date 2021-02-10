@@ -30,19 +30,16 @@ class HandleAllPrizes(Resource):
         limit_allowed = 300
 
         if prize in prize_allowed:
-            page = int(request.args.get('page', 1))
             limit = int(request.args.get('limit', limit_allowed))
-            term = request.args.get('term', 'Data Sorteio')
+            term = request.args.get('term', 'data_sorteio')
             search = request.args.get('search', {'$gt': '01/01/1900'})
 
             # Search documents by collection and term.
             query = {term: search}
 
-            documents = db.find_content(query, prize, limit=limit, skip=page)
+            documents = db.find_content(query, prize, limit=limit)
 
-            return jsonify(
-                page=page, count_data=len(documents), documents=documents
-            )
+            return jsonify(count_data=len(documents), documents=documents)
         rest_api.abort(404, f"{prize} doesn't exist!")
 
     @rest_api.response(403, 'Method Forbidden!')

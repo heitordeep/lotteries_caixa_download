@@ -16,26 +16,19 @@ class Database:
         self.client = MongoClient(f'mongodb://{URI}:27017/{DATABASE}')
         self.db = self.client[DATABASE]
 
-    def find_content(self, query, collection, limit=0, skip=0):
+    def find_content(self, query, collection, limit=0):
 
         try:
-            documents = self.db[collection].find(query, limit=limit, skip=skip)
+            documents = self.db[collection].find(query, limit=limit)
             documents = list(documents)
             logger.debug_register(
-                f'Reading {len(documents)} records of the {collection} documents!'
+                f'Reading {len(documents)} records of the {collection} documents! '
+                f'Query -> {query}'
             )
 
-            contens_null = ['NaN', 'nan', ' ']
-
-            # Remove ObjectId in _id and Nan.
+            # Remove ObjectId on _id.
             for i in range(len(documents)):
-                if str(documents[i]['Cidade']) in contens_null:
-                    documents[i]['Cidade'] = 'null'
-                if str(documents[i]['UF']) in contens_null:
-                    documents[i]['UF'] = 'null'
-
                 documents[i]['_id'] = str(documents[i]['_id'])
-                
             return documents
 
         except ConnectionFailure as e:
